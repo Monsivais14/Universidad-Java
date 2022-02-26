@@ -7,7 +7,7 @@ package com.gm.mundopc.perifericos;
  */
 public class DispositivoEntrada {
     
-    private String tipoEntrada;
+    private String tipoEntrada;//hace referencia a si es mouse o teclado
     private String marca;
 
     public DispositivoEntrada(String tipoEntrada,String marca) {
@@ -15,6 +15,15 @@ public class DispositivoEntrada {
         this.marca = marca;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[DispositivoEntrada{tipoEntrada=").append(tipoEntrada);
+        sb.append(", marca=").append(marca);
+        sb.append("}]");
+        return sb.toString();
+    }
+    
     public String getMarca() {
         return marca;
     }
@@ -30,8 +39,4 @@ public class DispositivoEntrada {
     public void setTipoEntrada(String tipoEntrada) {
         this.tipoEntrada = tipoEntrada;
     }
-    
-    
-    
-    
 }
