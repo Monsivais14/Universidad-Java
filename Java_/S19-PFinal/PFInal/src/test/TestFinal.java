@@ -9,7 +9,7 @@ public class TestFinal {
         final int n1 = 10; //con final una vez asignado su valor no podra ser modificado 
         //n1 = 16;
         System.out.println("n1 = " + n1);
-
+        //
         System.out.println(domain.Persona.CONSTANTE);
 
         final Persona p1 = new Persona();
