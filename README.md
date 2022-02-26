@@ -6,7 +6,7 @@
 <p>Dentro de las carpetas del repositorio esta dividido por los temas del curso <br> a como vi el orden mas conveniente
     para la organizacion del mismo. </p>
 
-    <h3>Carpetas por nombre y contenido:</h3>
+    <h4>Carpetas por nombre y contenido:</h4>
 <ul>
     <li>Java_:
         <ul>
