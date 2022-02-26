@@ -9,10 +9,7 @@
 <h2>Carpetas por nombre y descripcion del contenido:</h2>
 
 <ul>
-    <li>Java_:
-        <ul>
-            Dentro de esta carpeta esta la programacion basica del lenguaje Java <br>
-            como seria poo, clases, objetos, arreglos, etc el conocimiento esencial 
-        </ul>
+    <li>Java_: Dentro de esta carpeta esta la programacion basica del lenguaje Java <br>
+               como seria poo, clases, objetos, arreglos, etc el conocimiento esencial 
     </li>
 </ul>
