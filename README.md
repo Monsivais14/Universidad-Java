@@ -4,9 +4,10 @@
     y explicaciones a profundidad sobre el lenguaje</p>
     
 <p>Dentro de las carpetas del repositorio esta dividido por los temas del curso <br> a como vi el orden mas conveniente
-    para la organizacion del mismo. </p>
+    para la organizacion del mismo.</p>
 
-    <label>Carpetas por nombre y contenido:</label>
+<h2>Carpetas por nombre y contenido:</h2>
+
 <ul>
     <li>Java_:
         <ul>
