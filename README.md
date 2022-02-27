@@ -10,6 +10,7 @@
 
 <ul>
     <li>Java_: Dentro de esta carpeta esta la programacion basica del lenguaje Java <br>
-               como seria poo, clases, objetos, arreglos, etc el conocimiento esencial 
+               como seria poo, clases, objetos, arreglos, etc el conocimiento esencial <br>
+               para iniciar Java y conocer lo basico
     </li>
 </ul>
