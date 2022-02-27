@@ -7,10 +7,11 @@ package com.gm.mundopc.perifericos;
  */
 public class DispositivoEntrada {
     
-    private String tipoEntrada;//hace referencia a si es mouse o teclado
-    private String marca;
+    protected String tipoEntrada;//hace referencia a su tipo de conexion
+    protected String marca;
+    protected double precio;
 
-    public DispositivoEntrada(String tipoEntrada,String marca) {
+    public DispositivoEntrada(String tipoEntrada,String marca,double precio) {
         this.tipoEntrada = tipoEntrada;
         this.marca = marca;
     }
@@ -38,5 +39,13 @@ public class DispositivoEntrada {
 
     public void setTipoEntrada(String tipoEntrada) {
         this.tipoEntrada = tipoEntrada;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 }
