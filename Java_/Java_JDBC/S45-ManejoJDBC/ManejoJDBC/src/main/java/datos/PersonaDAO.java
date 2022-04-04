@@ -16,6 +16,7 @@ public class PersonaDAO implements DAO {
     private static final String SQL_SELECT = "SELECT id_persona,nombre,apellido,email,telefono FROM persona"; //obtiene el contenido de la bd de persona
     private static final String SQL_INSERT = "INSERT INTO persona(nombre,apellido,email,telefono)  VALUES(?,?,?,?)";//ingresa un registro en la bd de persona(con parametros)
     private static final String SQL_UPDATE = "UPDATE persona SET nombre=?,apellido=?,email=?,telefono=? WHERE id_persona=?;";
+    private static final String SQL_DELETE = "DELETE FROM persona   where id_persona=?";
 
     @Override
     public List<Persona> seleccionar() {
@@ -72,6 +73,7 @@ public class PersonaDAO implements DAO {
         /*
         Recibe un objeto de Tipo Persona e ingresa la infomacion del objeto dentro de la bd
          */
+        
         //objetos a utilizar
         Connection con = null;
         PreparedStatement stmt = null;
@@ -167,7 +169,47 @@ public class PersonaDAO implements DAO {
     public void eliminar(Persona persona) {
         /*
         Elimina un registro de bd apartir de su contenido (completo)
-         */
+        */
+        List<Persona> personas = this.seleccionar();
+        boolean existe=false;
+        //primero se comprueba si el registro existe
+        for (int i = 0; i < personas.size(); i++) {
+            if(personas.get(i).getIdPersona()==persona.getIdPersona()){
+                existe=true;
+            }
+        }
+        
+        Connection con = null;
+        PreparedStatement stmt = null;
+        
+        if(existe){ //si el registro existe
+            try{
+                con = Conexion.getConnection();//conexion a bd
+                stmt = con.prepareStatement(SQL_DELETE);//accion delete
+                
+                /*
+                Ingreso de id del where para realizar el delete
+                */
+                stmt.setInt(1, persona.getIdPersona());
+                
+                stmt.executeUpdate();//ejecucion de update (tambien valido en delete)
+                
+            }catch(SQLException ex){
+                ex.printStackTrace(System.err);
+            }finally{
+                try{
+                    Conexion.close(con);
+                    Conexion.close(stmt);
+                    System.out.println("Eliminacion exitosa");
+                }catch(SQLException ex){
+                    ex.printStackTrace(System.err);
+                }
+            }
+            
+        }else{
+            System.err.println("Error:Persona no encontrada.");
+        }
+        
     }
 
     @Override
@@ -175,6 +217,46 @@ public class PersonaDAO implements DAO {
         /*
         Elimina un registro en bd apartir de su id
          */
+        List<Persona> personas = this.seleccionar();
+        boolean existe=false;
+        //primero se comprueba si el registro existe
+        for (int i = 0; i < personas.size(); i++) {
+            if(personas.get(i).getIdPersona()==idPersona){
+                existe=true;
+            }
+        }
+        
+        Connection con = null;
+        PreparedStatement stmt = null;
+        
+        if(existe){ //si el registro existe
+            try{
+                con = Conexion.getConnection();//conexion a bd
+                stmt = con.prepareStatement(SQL_DELETE);//accion delete
+                
+                /*
+                Ingreso de id del where para realizar el delete
+                */
+                stmt.setInt(1, idPersona);
+                
+                stmt.executeUpdate();//ejecucion de update (tambien valido en delete)
+                
+            }catch(SQLException ex){
+                ex.printStackTrace(System.err);
+            }finally{
+                try{
+                    Conexion.close(con);
+                    Conexion.close(stmt);
+                    System.out.println("Eliminacion exitosa");
+                }catch(SQLException ex){
+                    ex.printStackTrace(System.err);
+                }
+            }
+            
+        }else{
+            System.err.println("Error:Persona no encontrada.");
+        }
+        
     }
 
 }

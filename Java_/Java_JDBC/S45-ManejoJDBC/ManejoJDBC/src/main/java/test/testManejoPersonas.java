@@ -11,7 +11,7 @@ public class testManejoPersonas {
         
         PersonaDAO personaDao = new PersonaDAO();
         
-        //personaDao.insertar(new Persona("Juan","Murieta","juaMun@Hotmail.com","8474567534")); //insertando objeto persona en bd
+        //personaDao.insertar(new Persona("Juan","Murieta","juanMun@Hotmail.com","8474567534")); //insertando objeto persona en bd
         
         List<Persona> personas =  personaDao.seleccionar(); //objeto de tipo List obtieniendo list de la bd
         
@@ -19,8 +19,11 @@ public class testManejoPersonas {
             System.out.println("personas = " + persona);
         }
         
-        personaDao.actualizar(new Persona(7,"Jose","Murieta","juanMun@Hotmail.com","8474567534"));
+        //personaDao.actualizar(new Persona(7,"Jose","Murieta","juanMun@Hotmail.com","8474567534"));
         
+        //personaDao.eliminar(new Persona(7,"Jose","Murieta","juanMun@Hotmail.com","8474567534"));
+        
+        //personaDao.eliminar(7);
     }
     
 }
