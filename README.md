@@ -12,5 +12,12 @@
     <li>Java_: Dentro de esta carpeta esta la programacion basica del lenguaje Java <br>
                como seria poo, clases, objetos, arreglos, etc el conocimiento esencial <br>
                para iniciar Java y conocer lo basico
+        <li>
+                JDBC:
+                <lu>
+                    Dentro de esta carpeta esta todo lo relacionado <br>
+                    y el manejo de bases de datos dentro del mismo
+                </lu>
+            </li>
     </li>
 </ul>
