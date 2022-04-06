@@ -19,7 +19,7 @@ public class ConectionDB {
     private static final String JDBC_URL="jdbc:mysql://localhost:3306/test?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     
     //este metodo hace una conexion con la base de datos apartir de la url y el usaurio de la base de datos
-    public static Connection conect() throws SQLException{
+    public static Connection getConnection() throws SQLException{
         return DriverManager.getConnection(JDBC_URL,JDBC_USER,JDBC_PASSWORD); //retorna un objeto de tipo Connection
     }
     

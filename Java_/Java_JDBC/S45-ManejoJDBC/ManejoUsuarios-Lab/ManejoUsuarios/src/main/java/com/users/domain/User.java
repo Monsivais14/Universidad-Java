@@ -8,10 +8,59 @@ package com.users.domain;
 public class User {
     
     //atributos de un objeto usuario
-    Integer idUsuario;
-    String name;
-    String password;
+    private Integer idUsuario;
+    private String name;
+    private String password;
     
+    public User(){
+        
+    }
+   
+     //constructor para obtener registro 
+    public User(Integer idUsuario,String name,String password){
+        this.idUsuario = idUsuario;
+        this.name = name;
+        this.password = password;
+    }
     
+    //constructor para crear nuevo objeto para hacer registro
+    public User(String name,String password){
+        this.name=name;
+        this.password=password;
+    } 
+
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("User{idUsuario=").append(idUsuario);
+        sb.append(", name=").append(name);
+        sb.append(", password=").append(password);
+        sb.append('}');
+        return sb.toString();
+    }
     
 }
