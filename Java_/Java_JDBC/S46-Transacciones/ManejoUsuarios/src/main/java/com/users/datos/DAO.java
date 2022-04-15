@@ -2,6 +2,7 @@
 package com.users.datos;
 
 import com.users.domain.User;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -10,14 +11,14 @@ import java.util.List;
  */
 public interface DAO {
     
-    public List<User> list();
+    public List<User> list() throws SQLException;
     
-    public void insert(User user);
+    public void insert(User user) throws SQLException;
     
-    public void update(User user);
+    public void update(User user) throws SQLException;
     
-    public void delete(User user);
+    public void delete(User user)throws SQLException;
     
-    public void delete(Integer idUser);
+    public void delete(Integer idUser)throws SQLException;
     
 }

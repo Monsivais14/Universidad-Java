@@ -15,13 +15,23 @@ import java.util.List;
  */
 public class UserDAO implements DAO {
 
+    private Connection conTransaccional;
+    
     private final String SQL_QUERY = "SELECT    *  FROM  test.usuario";
     private final String SQL_INSERT = "INSERT INTO usuario (usuario,password) VALUES(?,?) ";
     private final String SQL_UPDATE = "UPDATE usuario SET  usuario=?,password=? WHERE id_usuario=?";
     private final String SQL_DELETE = "DELETE FROM  usuario WHERE id_usuario=?";
-
+    
+    public UserDAO(){
+    }
+    
+    public UserDAO(Connection con){
+        //constructor que recibe conexion permitiendo una conexion transaccional en bd
+       this.conTransaccional = con;
+    }
+    
     @Override
-    public List<User> list() {
+    public List<User> list() throws SQLException{
 
         Connection con = null;
         PreparedStatement pst = null;
@@ -32,7 +42,7 @@ public class UserDAO implements DAO {
 
         try {
 
-            con = getConnection(); //obtiene conexion con base de datos(import static)
+            con = this.conTransaccional!=null?this.conTransaccional:getConnection(); //obtiene conexion con base de datos(import static)
             pst = con.prepareStatement(SQL_QUERY);
             rs = pst.executeQuery();
 
@@ -47,13 +57,16 @@ public class UserDAO implements DAO {
                 list.add(user);//finalmente anade el objeto user dentro del list que sera retornado
             }
 
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.err);
-        } finally {
+        }finally {
             try {
-                close(con);
-                close(pst);
                 close(rs);
+                close(pst);
+                
+                if(this.conTransaccional==null){
+                    //cierre de conexion en caso de que la conexion no sea transaccional
+                    close(con);
+                }
+                
             } catch (SQLException ex) {
                 ex.printStackTrace(System.err);
             }
@@ -62,14 +75,14 @@ public class UserDAO implements DAO {
     }
 
     @Override
-    public void insert(User user) {
+    public void insert(User user) throws SQLException {
 
         Connection cn = null;
         PreparedStatement pst = null;
 
         try {
 
-            cn = getConnection();//hace conexion con bd
+            cn = this.conTransaccional!=null?this.conTransaccional:getConnection(); //hace conexion con bd
             pst = cn.prepareStatement(SQL_INSERT);//instruccion SQL
 
             //da valor a las variables indefinidas '?' en la cadena  SQL_INSERT
@@ -78,13 +91,15 @@ public class UserDAO implements DAO {
 
             pst.executeUpdate();//ejecuta la oden 
 
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.err);
         } finally {
             try {
                 //cierre de conexiones con bd
-                close(cn);
                 close(pst);
+                
+                if(this.conTransaccional==null){
+                    close(cn);
+                }
+                
             } catch (SQLException ex) {
                 ex.printStackTrace(System.err);
             }
@@ -92,14 +107,14 @@ public class UserDAO implements DAO {
     }
 
     @Override
-    public void update(User user) {
+    public void update(User user) throws SQLException {
 
         Connection cn = null;
         PreparedStatement pst = null;
 
         try {
 
-            cn = getConnection();//conexion a bd
+            cn = this.conTransaccional!=null?this.conTransaccional:getConnection();//conexion a bd
             pst = cn.prepareStatement(SQL_UPDATE);//instruccion a bd
 
             //da valor a las variables indefinidad en la cadena SQL_UPDATE ('?')
@@ -109,13 +124,15 @@ public class UserDAO implements DAO {
 
             pst.executeUpdate();//ejecuta la orden
 
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.err);
         } finally {
             try {
                 //cierre de conexiones
-                close(cn);
                 close(pst);
+                
+                if(this.conTransaccional==null){
+                    close(cn);
+                }
+                
             } catch (SQLException ex) {
                 ex.printStackTrace(System.err);
             }
@@ -124,14 +141,14 @@ public class UserDAO implements DAO {
     }
 
     @Override
-    public void delete(User user) {
+    public void delete(User user) throws SQLException {
 
         Connection cn = null;
         PreparedStatement pst = null;
 
         try {
 
-            cn = getConnection();//Hace conexion con bd
+            cn = this.conTransaccional!=null?this.conTransaccional:getConnection();//Hace conexion con bd
             pst = cn.prepareStatement(SQL_DELETE);//orden en bd SQL_DELETE
 
             //pasa el parametro de where en la cadena a ejecutar en bd SQL_DELETE
@@ -139,12 +156,14 @@ public class UserDAO implements DAO {
 
             pst.executeUpdate();
 
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.err);
         } finally {
             try {
-                close(cn);
                 close(pst);
+                
+                if(this.conTransaccional==null){
+                    close(cn);
+                }
+                
             } catch (SQLException e) {
                 e.printStackTrace(System.err);
             }
@@ -153,14 +172,14 @@ public class UserDAO implements DAO {
     }
 
     @Override
-    public void delete(Integer idUser) {
+    public void delete(Integer idUser) throws SQLException {
 
         Connection cn = null;
         PreparedStatement pst = null;
 
         try {
 
-            cn = getConnection();//conexion a bd
+            cn = this.conTransaccional!=null?this.conTransaccional:getConnection();//conexion a bd
             pst = cn.prepareStatement(SQL_DELETE);//orden a bd
 
             //da valor al int del where en SQL_DELETE
@@ -168,12 +187,14 @@ public class UserDAO implements DAO {
 
             pst.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace(System.err);
-        } finally {
+        }finally {
             try {
-                close(cn);
                 close(pst);
+                
+                if(this.conTransaccional==null){
+                    close(cn);
+                }
+                
             } catch (SQLException e) {
                 e.printStackTrace(System.err);
             }
